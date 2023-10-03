@@ -1,0 +1,41 @@
+(use tree-manual.uscm)
+
+;problem 1
+
+(define-struct tree (value left right))
+
+(define (path n t)
+  (define (helper node)
+    (cond
+      ((null? node) #f)                   ; If the tree is empty, return #f.
+      ((= n (tree-value node)) '())       ; If the current node contains the target integer, return an empty list.
+      ((< n (tree-value node))            ; If the target is smaller, go left.
+       (cons 'left (helper (tree-left node))))
+      ((> n (tree-value node))            ; If the target is larger, go right.
+       (cons 'right (helper (tree-right node))))))
+
+  (let ((result (helper t)))
+    (if result
+        result
+        #f)))
+
+
+;Problem 2
+
+(define tree (value left right))
+
+(define (inorder t)
+  (cond
+    ((null? t) '())                      ; If the tree is empty, return an empty list.
+ (else
+     (append (inorder (tree-left t))     ; Inorder: Left, Root, Right
+             (list (tree-value t))
+             (inorder (tree-right t))))))
+
+(define (postorder t)
+  (cond
+    ((null? t) '())                      ; If the tree is empty, return an empty list.
+    (else
+     (append (postorder (tree-left t))   ; Postorder: Left, Right, Root
+             (postorder (tree-right t))
+             (list (tree-value t))))))
