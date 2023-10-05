@@ -39,3 +39,10 @@
      (append (postorder (tree-left t))   ; Postorder: Left, Right, Root
              (postorder (tree-right t))
              (list (tree-value t))))))
+
+; Problem 3
+(define (explode-digits n)
+ (if (< n 10)                            ; If the integer added is less than 10, add the integer to a list and return it.
+  (cons n lst)
+   (lst))
+    (cons (explode-digits (/ n 10)) (lst (remainder n 10))))   ; If n is > 10, recursively call explode-digit and add the remainder of / n 10 to the list.
