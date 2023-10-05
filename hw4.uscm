@@ -46,3 +46,18 @@
   (cons n lst)
    (lst))
     (cons (explode-digits (/ n 10)) (lst (remainder n 10))))   ; If n is > 10, recursively call explode-digit and add the remainder of / n 10 to the list.
+
+(define legnth (xs)
+ (if (null? xs)
+     0
+     (+ 1 (length (cdr xs)))))
+
+(set total-implode 0)
+(define (implode-digits lst)
+ (if (null? lst)
+  total-implode				;Return 0 if list is empty
+   (* 10 total-implode)			;Multiply previous total by 10 to incriment digit of last value
+   (+ (car lst) (total-implode)))       ;Add the car of the list to the total
+      (implode-digits (cdr lst))) 	;Recursively call the function with the cdr to increment
+				
+
