@@ -1,3 +1,9 @@
+; COSC 3410 - Project 4
+; Functions are created to find the path to a node in a tree, traverse a tree in-order and post-order, convert a positve integer into a list of digit vlaues and turn a list of digit values into an integer, as well as a function to compute the dot product on two lists.
+; @author Viviana Garcia, Andrew Allen, Marcin Tutaj
+; Instructor Brylow
+; TA-BOT:MAILTO  viviana.garcia@marquette.edu andrew.allen@marquette.edu marcin.tutaj@marquette.edu
+
 (use tree-manual.uscm)
 
 ;problem 1
@@ -59,5 +65,14 @@
    (* 10 total-implode)			;Multiply previous total by 10 to incriment digit of last value
    (+ (car lst) (total-implode)))       ;Add the car of the list to the total
       (implode-digits (cdr lst))) 	;Recursively call the function with the cdr to increment
-				
+
+
+;Problem 4
+
+(define (dot-product lst-1 lst-2)
+ (if (or (null? lst-1) (null? lst-2)) 	;Check if one of the lists is empty
+  0
+  (+ (* (car lst-1) (car lst-2))  	;Add the result of multiplying the first element of each list
+     (dot-product (cdr lst-1) (cdr lst-2)))))		;Recursively call the function with the cdr to iterate through the lists.
+
 
